@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+{% for message in messages %}
+  <li{% if message.tags %}
+    class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+{% endfor %}
+<form method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit"> send</button>
+</form>
+<hr>
+<table border="1">
+
+  <caption>Links</caption>
+  <tr>
+    <th>Link</th>
+    <th>Short_link</th>
+  </tr>
+  {% for link in links %}
+    <tr>
+      <th><a href="{{ link.link }}">{{ link.link }}</a></th>
+      <th><a
+        href="/{{ link.short_link }}">{{ domain }}/{{ link.short_link }}</a>
+      </th>
+    </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>

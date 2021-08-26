@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+  crossorigin="anonymous"
+/>
+  <meta charset="UTF-8">
+  <title>Redirect</title>
+</head>
+<body>
+<div id="app">
+
+</div>
+
+<script crossorigin
+        src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin
+        src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script crossorigin
+        src="https://unpkg.com/axios@0.2.1/dist/axios.js"></script>
+<script crossorigin
+        src="https://unpkg.com/universal-cookie@3/umd/universalCookie.min.js"></script>
+<script crossorigin src="{% static "api/js/react/cookie.js" %}"></script>
+
+<script crossorigin
+        src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.2.0/react-router-dom.min.js"></script>
+
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="https://unpkg.com/react/umd/react.production.min.js"
+        crossorigin></script>
+
+<script
+  src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
+  crossorigin></script>
+
+<script
+  src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
+  crossorigin></script>
+<script type="text/babel"
+        src="{% static "api/js/react/components/redirects.js" %}"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+
+let cookie=new UniversalCookie()

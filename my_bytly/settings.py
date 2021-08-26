@@ -10,7 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import datetime
+import os
 from pathlib import Path
+
+from environs import Env
+from dotenv import load_dotenv
+
+load_dotenv()
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +33,7 @@ SECRET_KEY = 'django-insecure-kamp&m=9focjtz+tuvt8hn2qnn(qt4-c!fwm1y@zd!s2$%8u&h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 
 # Application definition
@@ -40,6 +48,7 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
     'django_crontab',
+    'rest_framework',
 
     'main',
 ]
@@ -83,11 +92,16 @@ WSGI_APPLICATION = 'my_bytly.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.getenv('DB_NAME', BASE_DIR / 'db.sqlite3'),
+        'USER': os.getenv('DB_USER', ''),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', ''),
+        'PORT': os.getenv('DB_PORT', ''),
     }
 }
 
+COMPLEXITY_GENERATE_SHORT_URL=4
 
 LIVE_TIME_CACHE = datetime.timedelta(minutes=2)
 CRONJOBS = [
@@ -140,7 +154,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = os.getenv('STATIC_URL', '/static/')
+STATICFILES_DIRS = [
+   os.getenv('STATICFILES_DIRS', os.path.join(BASE_DIR, 'static')),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

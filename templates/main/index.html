@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+  <body>
+    {% for message in messages %}
+      <li{% if message.tags %}
+        class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    <form method="POST">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit"> send</button>
+    </form>
+    <hr>
+    <table border="1">
+      <caption>Links</caption>
+      <tr>
+        <th>Link</th>
+        <th>Short_link</th>
+      </tr>
+      {% for link in page_obj %}
+        <tr>
+          <th>
+            <a href="{{ link.link }}">{{ link.link }}</a>
+          </th>
+          <th>
+            <a href="/{{ link.short_link }}">{{ domain }}/{{ link.short_link }}</a>
+          </th>
+        </tr>
+      {% endfor %}
+    </table>
+    <hr>
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
+  </body>
+</html>

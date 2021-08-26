@@ -1,0 +1,14 @@
+venv/
+**/__pycache__
+*/__pycache__
+db.sqlite3
+.python-version
+*.pyc
+*__pycache__*
+.env
+*.pyc
+*.pyo
+media/
+data.json
+.idea/
+debug.log
